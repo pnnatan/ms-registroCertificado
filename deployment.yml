@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cartorio-blockms-registroCertidao-dep
+  labels:
+    #Project ID
+    app: cartorio-blockms
+spec:
+  #Run two instances of our application
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cartorio-blockms
+    spec:
+      #Container details
+      containers:
+        - name: cartorio-blockms-registroCertidao
+          image: gcr.io/cartorio-blockms/cartorio-blockms-registroCertidao:0.0.1
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"  
+
+          #Ports to expose
+          ports:
+          - containerPort: 3000
